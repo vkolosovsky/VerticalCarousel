@@ -184,6 +184,10 @@ extension VerticalCarousel: UICollectionViewDelegate, UICollectionViewDataSource
         return result
     }
 
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.isHidden = false
+    }
+
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
         let allowedY = self.flowLayout.getLimitingOffset()
