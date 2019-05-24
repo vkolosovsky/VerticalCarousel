@@ -1,0 +1,331 @@
+
+@font-face {
+    font-family: "National 2";
+    src: local("National2-Bold.ttf") format("ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "National 2";
+    src: local("National2-Medium.ttf") format("ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "National 2";
+    src: url("National2-Regular.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Tiempos Text";
+    src: url("TiemposText-Regular.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Tiempos Headline";
+    src: url("TiemposHeadline-Medium.ttf") format("ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+.container {
+    padding: 0px 0px 0px 0px;
+    margin:  0px -7px 0px -7px;
+}
+
+body {
+    font-family: "Tiempos Text";
+    color: #000000;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "National 2";
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+p {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 15px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    width: 100%;
+}
+
+blockquote {
+    padding: 0px 20px;
+    margin: 0 0 20px;
+    font-size: 14px;
+    border-left: 5px solid #dfe2e5;
+}
+
+kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #444d56;
+    background-color: #fcfcfc;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #959da5;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    border: solid 1px #c6cbd1;
+    border-bottom-color: #959da5;
+}
+
+ul {
+    list-style-position:inside;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20;
+}
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+ol ol {
+    margin-bottom: 0;
+}
+ol ul {
+    margin-bottom: 0;
+}
+ul ol {
+    margin-bottom: 0;
+    padding-left: 35px;
+}
+ul ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+li {
+    word-wrap: break-word;
+}
+table {
+    width: 100%;
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+td {
+    padding: 1px;
+}
+th {
+    padding: 1px;
+}
+th[align="left"] {
+    text-align: left;
+}
+th[align="center"] {
+    text-align: center;
+}
+th[align="right"] {
+    text-align: right;
+}
+td[align="left"] {
+    text-align: left;
+}
+td[align="center"] {
+    text-align: center;
+}
+td[align="right"] {
+    text-align: right;
+}
+abbr {
+    border-bottom: 1px dotted #777;
+}
+mark {
+    /*padding: 0.2em;*/
+    background-color: #dfe2e5;
+    /* background-color: #fcf8e3; */
+}
+
+table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+table th {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+table td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+pre[language]::before {
+    content: attr(language);
+    position: absolute;
+    top: 0;
+    right: 5px;
+    padding: 2px 1px;
+    text-transform: uppercase;
+    color: #666;
+    font-size: 8.5px;
+}
+pre:not([language]) {
+    padding: 6px 10px;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+.text-justify {
+    text-align: justify;
+}
+red,
+.red {
+    color: #f44336;
+}
+pink,
+.pink {
+    color: #e91e63;
+}
+purple,
+.purple {
+    color: #9c27b0;
+}
+deeppurple,
+.deeppurple {
+    color: #673ab7;
+}
+indigo,
+.indigo {
+    color: #3f51b5;
+}
+blue,
+.blue {
+    color: #2196f3;
+}
+lightblue,
+.lightblue {
+    color: #03a9f4;
+}
+cyan,
+.cyan {
+    color: #00bcd4;
+}
+teal,
+.teal {
+    color: #009688;
+}
+green,
+.green {
+    color: #4caf50;
+}
+lightgreen,
+.lightgreen {
+    color: #8bc34a;
+}
+lime,
+.lime {
+    color: #cddc39;
+}
+yellow,
+.yellow {
+    color: #ffeb3b;
+}
+amber,
+.amber {
+    color: #ffc107;
+}
+orange,
+.orange {
+    color: #ff9800;
+}
+deeporange,
+.deeporange {
+    color: #ff5722;
+}
+brown,
+.brown {
+    color: #795548;
+}
+grey,
+.grey {
+    color: #9e9e9e;
+}
+bluegrey,
+.bluegrey {
+    color: #607d8b;
+}
+smaller,
+.text-smaller {
+    font-size: smaller;
+}
+small,
+.text-small {
+    font-size: small;
+}
+medium,
+.text-medium {
+    font-size: medium;
+}
+large,
+.text-large {
+    font-size: large;
+}
+larger,
+.text-larger {
+    font-size: larger;
+}
+x-small,
+.text-x-small {
+    font-size: x-small;
+}
+x-large,
+.text-x-large {
+    font-size: x-large;
+}
+xx-small,
+.text-xx-small {
+    font-size: xx-small;
+}
+xx-large,
+.text-xx-large {
+    font-size: xx-large;
+}
+
+input[type="checkbox"] {
+    color: #f5f8fa;
+    border: 1px solid #f5f8fa;
+}
+
+a {
+    outline: none!important;
+    text-decoration: none;
+    color: #f7901e!important;
+}
+
