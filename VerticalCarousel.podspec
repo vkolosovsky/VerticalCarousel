@@ -12,7 +12,9 @@ Pod::Spec.new do |s|
   s.summary          = 'One more ugly UICollectionView'
 
   s.description      = <<-DESC
-  PDF like cards swiper with "stick-to card edge" physics. Built with a UICollectionView and a custom flowLayout
+PDF like cards swiper with "stick-to card edge" physics. Built with a UICollectionView and a custom flowLayout
+                       DESC
+
 
   s.homepage         = 'https://github.com/alyona-bachurina/VerticalCarousel'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
