@@ -338,6 +338,26 @@ extension VerticalCarousel: UICollectionViewDelegateFlowLayout {
         }
         return cellHeight
     }
+
+    public func scrollOneCellBackward() {
+        let newIndex = self.currentCardIndex - 1
+        let oldIndex = self.currentCardIndex
+        if newIndex >= 0  {
+            self.scrollToCard(at: newIndex, animated: true)
+            self.verticalCarouselView.currentCardChanged?(oldIndex, newIndex)
+        }
+    }
+
+    public func scrollOneCellForward() {
+        let maxIndex = self.verticalCarouselView.numberOfItems(inSection: 0) - 1
+        let newIndex = self.currentCardIndex + 1
+        let oldIndex = self.currentCardIndex
+        if newIndex <= maxIndex  {
+            self.scrollToCard(at: newIndex, animated: true)
+            self.verticalCarouselView.currentCardChanged?(oldIndex , newIndex)
+        }
+    }
+
 }
 
 extension Collection {
