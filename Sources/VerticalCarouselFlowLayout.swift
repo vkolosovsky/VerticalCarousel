@@ -150,6 +150,15 @@ internal class VerticalCarouselFlowLayout: UICollectionViewFlowLayout {
 
         applyFinePagingRestrictions(proposedPage: proposedPage, currentPage: currentPage, proposedYnoV: proposedYnoV, velocity: velocity, proposedY: &proposedY)
 
+        let maxY = getLimitingOffset()
+        if proposedY > maxY {
+            proposedY = maxY
+            printLog(log: "=== Limiting Y by lastCardAllowed to \(maxY) for page \(lastCardAllowed)")
+        } else {
+            printLog(log: "=== Limiting Y by lastCardAllowed is not applied; while it is \(maxY) for page \(lastCardAllowed)")
+        }
+
+
         proposedPage = getPageFromOffset(offset: proposedY)
         printLog(log: "=== Final page will be \(proposedPage) at \(proposedY)")
 
