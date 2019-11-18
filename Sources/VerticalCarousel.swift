@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 public func printLog(log: CustomDebugStringConvertible?) {
     let formatter = DateFormatter()
@@ -222,8 +222,7 @@ extension VerticalCarousel: UICollectionViewDelegate, UICollectionViewDataSource
         verticalCarouselView.backgroundColor = UIColor.clear
         verticalCarouselView.showsVerticalScrollIndicator = false
         verticalCarouselView.delegate = self
-        //VerticalCarouselView.dataSource = self
-        verticalCarouselView.dataSource = self
+        //verticalCarouselView.dataSource = self
         self.addSubview(verticalCarouselView)
     }
 
@@ -263,15 +262,13 @@ extension VerticalCarousel: UICollectionViewDelegateFlowLayout {
         printLog(log: "=== Card \(index) set new heights pair: actual=\(height.actual) max=\(height.max). Contraints will apply.")
         let yInsets = cardSpacing + topInset + visibleNextCardHeight
         let newHeight = max(height.max, verticalCarouselView.frame.size.height - yInsets)
-        let newActualHeight =  min(newHeight, height.actual)
+        let newActualHeight = height.actual > 0 ?  min(newHeight, height.actual) : newHeight
 
         let page = self.flowLayout.currentPage()
         let yBefore = self.flowLayout.getOffsetForPage(page: page )
 
         // store heights
-        while flowLayout.cellHeights.count <= index {
-            flowLayout.cellHeights.append(VerticalCarouselDefaults.heights)
-        }
+        self.flowLayout.initDefaultHeights(index: index)
 
         let oldHeight = flowLayout.cellHeights[index].max
         flowLayout.cellHeights[index] = HeightsPair(actual: newActualHeight, max: newHeight)
@@ -302,9 +299,9 @@ extension VerticalCarousel: UICollectionViewDelegateFlowLayout {
 
         let itemSize = calculateItemSize(for: index)
 
-        let actualHeight = calculateActualItemHeight(for: index)
+        //let actualHeight = calculateActualItemHeight(for: index)
 
-        self.updateCellHeight(height: HeightsPair(actual: actualHeight, max: itemSize.height), atIndex: index)
+        //self.updateCellHeight(height: HeightsPair(actual: actualHeight, max: itemSize.height), atIndex: index)
 
         return itemSize
     }
@@ -342,7 +339,7 @@ extension VerticalCarousel: UICollectionViewDelegateFlowLayout {
     public func scrollOneCellBackward() {
         let newIndex = self.currentCardIndex - 1
         let oldIndex = self.currentCardIndex
-        if newIndex >= 0  {
+        if newIndex >= 0 {
             self.scrollToCard(at: newIndex, animated: true)
             self.verticalCarouselView.currentCardChanged?(oldIndex, newIndex)
         }
@@ -352,9 +349,9 @@ extension VerticalCarousel: UICollectionViewDelegateFlowLayout {
         let maxIndex = self.verticalCarouselView.numberOfItems(inSection: 0) - 1
         let newIndex = self.currentCardIndex + 1
         let oldIndex = self.currentCardIndex
-        if newIndex <= maxIndex  {
+        if newIndex <= maxIndex {
             self.scrollToCard(at: newIndex, animated: true)
-            self.verticalCarouselView.currentCardChanged?(oldIndex , newIndex)
+            self.verticalCarouselView.currentCardChanged?(oldIndex, newIndex)
         }
     }
 

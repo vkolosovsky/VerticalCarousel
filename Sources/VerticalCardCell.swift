@@ -18,7 +18,7 @@ import UIKit
         self.layer.zPosition = CGFloat(layoutAttributes.zIndex)
     }
 
-    override open var isHidden: Bool{
+    override open var isHidden: Bool {
         get { return super.isHidden}
         set(v) {
             super.isHidden = v

@@ -42,7 +42,7 @@ open class MarkdownView: UIView {
 
   open override var intrinsicContentSize: CGSize {
     if let height = self.intrinsicContentHeight {
-        return CGSize(width: UIViewNoIntrinsicMetric, height: height)
+        return CGSize(width: UIView.noIntrinsicMetric, height: height)
     } else {
       return CGSize.zero
     }
@@ -97,8 +97,6 @@ open class MarkdownView: UIView {
             self.webView = wv
 
             wv.load(templateRequest)
-        } else {
-            // TODO: raise error
         }
     }
   }
@@ -158,7 +156,7 @@ public extension DispatchQueue {
      - parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
      - parameter block: Block to execute once
      */
-    public class func once(token: String, block:() -> Void) {
+    class func once(token: String, block:() -> Void) {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
 
@@ -170,17 +168,17 @@ public extension DispatchQueue {
         block()
     }
 
-    public class func once(_ file: String = #file, function: String = #function, line: Int = #line, block:() -> Void) {
+    class func once(_ file: String = #file, function: String = #function, line: Int = #line, block:() -> Void) {
         let token = file + ":" + function + ":" + String(line)
         once(token: token, block: block)
     }
 
-    public class func delayOnMain(_ delay: Double, closure:@escaping () -> Void) {
+    class func delayOnMain(_ delay: Double, closure:@escaping () -> Void) {
         let when = DispatchTime.now() + delay
         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
     }
 
-    public class func delayOnGlobal(_ delay: Double, closure:@escaping () -> Void) {
+    class func delayOnGlobal(_ delay: Double, closure:@escaping () -> Void) {
         let when = DispatchTime.now() + delay
         DispatchQueue.global().asyncAfter(deadline: when) {
             DispatchQueue.main.sync(execute: closure)

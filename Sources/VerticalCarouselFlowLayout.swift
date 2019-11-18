@@ -9,7 +9,7 @@ public enum VerticalCarouselDefaults {
 /// Custom `UICollectionViewFlowLayout` that provides the flowlayout information like paging and `VerticalCardCell` movements.
 internal class VerticalCarouselFlowLayout: UICollectionViewFlowLayout {
 
-    internal var cellHeights = [HeightsPair(0, 0)]
+    internal var cellHeights = [ VerticalCarouselDefaults.heights ]
     internal var lastCardAllowed: Int = 0
     internal var frameHeight: CGFloat = 0
     internal var lastProposedY: CGFloat = 0
@@ -21,7 +21,7 @@ internal class VerticalCarouselFlowLayout: UICollectionViewFlowLayout {
     internal override func prepare() {
         super.prepare()
 
-        assert(collectionView?.numberOfSections == 1, "Number of sections should always be 1.")
+        //assert(collectionView?.numberOfSections == 1, "Number of sections should always be 1.")
         assert(collectionView?.isPagingEnabled == false, "Paging on the collectionview itself should never be enabled. To enable cell paging, use the isPagingEnabled property of the VerticalCarouselFlowLayout instead.")
     }
 
@@ -75,6 +75,12 @@ internal class VerticalCarouselFlowLayout: UICollectionViewFlowLayout {
         return true
     }
 
+    internal func initDefaultHeights(index: Int){
+        while cellHeights.count <= index {
+            cellHeights.append(VerticalCarouselDefaults.heights)
+        }
+    }
+
     // Cell paging
     public func getPageFromOffset(offset: CGFloat) -> Int {
         var remainHeight = offset + topInset
@@ -91,6 +97,7 @@ internal class VerticalCarouselFlowLayout: UICollectionViewFlowLayout {
     }
 
     public func getOffsetForPage(page: Int) -> CGFloat {
+        self.initDefaultHeights(index: page)
         let num = page < cellHeights.count ? page: cellHeights.count
         let trimHeights = cellHeights[..<num]
         let offset = trimHeights.map {$0.max}.reduce(0, +)
@@ -157,7 +164,6 @@ internal class VerticalCarouselFlowLayout: UICollectionViewFlowLayout {
         } else {
             printLog(log: "=== Limiting Y by lastCardAllowed is not applied; while it is \(maxY) for page \(lastCardAllowed)")
         }
-
 
         proposedPage = getPageFromOffset(offset: proposedY)
         printLog(log: "=== Final page will be \(proposedPage) at \(proposedY)")

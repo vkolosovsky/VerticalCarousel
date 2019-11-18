@@ -181,6 +181,13 @@ class ExampleViewController: UIViewController, VerticalCarouselDelegate, Vertica
         cardSwiper.register(ContentCardCell.self, forCellWithReuseIdentifier: "ContentCardCell")
     }
 
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        cardSwiper.setLastCardAllowed(number: 7)
+        cardSwiper.scrollToCard(at: 5, animated: true)
+    }
+
     @IBAction func pressRemoveCards(_ sender: UIBarButtonItem) {
         if lastNumAllowed > 0 {
             lastNumAllowed -= 1
@@ -219,5 +226,4 @@ class ExampleViewController: UIViewController, VerticalCarouselDelegate, Vertica
     func numberOfCards(VerticalCarouselView: VerticalCarouselView) -> Int {
         return markdowns.count
     }
-    
 }
