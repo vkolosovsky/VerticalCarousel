@@ -76,6 +76,7 @@ public class VerticalCarousel: UIView {
     }
 
     public func setLastCardAllowed(number: Int) {
+		self.resetHeights(count: number, defaultValue: VerticalCarouselDefaults.heights)
         flowLayout.setLastCardAllowed(number: number)
     }
 
@@ -247,7 +248,7 @@ extension VerticalCarousel: UICollectionViewDelegate, UICollectionViewDataSource
 
 extension VerticalCarousel: UICollectionViewDelegateFlowLayout {
 
-    public func resetHeights(count: Int, defaultValue: HeightsPair = (actual:400.0, max:400.0)) {
+	public func resetHeights(count: Int, defaultValue: HeightsPair = VerticalCarouselDefaults.heights) {
 
         let dif = count - self.flowLayout.cellHeights.count
         if dif > 0 {
