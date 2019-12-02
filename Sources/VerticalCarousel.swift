@@ -76,7 +76,9 @@ public class VerticalCarousel: UIView {
     }
 
     public func setLastCardAllowed(number: Int) {
-		self.resetHeights(count: number, defaultValue: VerticalCarouselDefaults.heights)
+		let yInsets = cardSpacing + topInset + visibleNextCardHeight
+		let newHeight = verticalCarouselView.frame.size.height - yInsets
+		self.resetHeights(count: number+1, defaultValue: HeightsPair(newHeight, newHeight))
         flowLayout.setLastCardAllowed(number: number)
     }
 
