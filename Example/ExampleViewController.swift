@@ -178,6 +178,7 @@ class ExampleViewController: UIViewController, VerticalCarouselDelegate, Vertica
         super.viewDidLoad()
         cardSwiper.delegate = self
         cardSwiper.datasource = self
+		cardSwiper.verticalCarouselView.dataSource = cardSwiper
         cardSwiper.register(ContentCardCell.self, forCellWithReuseIdentifier: "ContentCardCell")
     }
 

@@ -1,14 +1,19 @@
 import UIKit
 
+let kVerticalCarouselDebugEnable: String = "-VCDebugEnabled"
+
 public func printLog(log: CustomDebugStringConvertible?) {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS "
-    print(formatter.string(from: NSDate() as Date), terminator: "")
-    if log == nil {
-        print("nil")
-    } else {
-        print(log!)
-    }
+
+	if ProcessInfo.processInfo.arguments.contains(kVerticalCarouselDebugEnable) {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS "
+		print(formatter.string(from: NSDate() as Date), terminator: "")
+		if log == nil {
+			print("nil")
+		} else {
+			print(log!)
+		}
+	}
 }
 
 /**

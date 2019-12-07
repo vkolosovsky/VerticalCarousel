@@ -17,7 +17,7 @@ class ContentCardCell: VerticalCardCell {
 
         web.onRendered = { [weak self] height in
             guard let strongSelf = self else { return }
-            print("will update height to \(height)")
+			printLog(log: "will update height to \(height)")
             strongSelf.onHeightUpdated?((actual: height, max: height)) //max(height, strongSelf.web.frame.height)
 
             if strongSelf.heightContraint == nil {
