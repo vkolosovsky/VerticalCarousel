@@ -276,7 +276,7 @@ internal class VerticalCarouselFlowLayout: UICollectionViewFlowLayout {
                     realtiveDecreaseFactor: realtiveDecreaseFactor,
                     cardHeight: cardHeight, attributes: attributes)
             attributes.transform = t
-        } else {
+        } else if attributes.indexPath.item < cellHeights.count {
             let bottomYDelta = cardMinY + cardHeight - cvMinY - frameHeight // Shows how much card bottom is elevated
             let delta = max(offsetFromTop, bottomYDelta)
             let actualCardHeight = cellHeights[attributes.indexPath.item].actual
