@@ -186,7 +186,6 @@ extension VerticalCarousel: UICollectionViewDelegate, UICollectionViewDataSource
 
         result.onHeightUpdated = { height in
             self.updateCellHeight(height: height, atIndex: indexPath.item)
-            //self.flowLayout.invalidateLayout()
         }
 
         return result
@@ -264,42 +263,48 @@ extension VerticalCarousel: UICollectionViewDelegateFlowLayout {
     }
 
     public func updateCellHeight(height: HeightsPair, atIndex index: Int) {
-
-        // set cellHeight in the custom flowlayout, we use this for paging calculations.
-        //flowLayout.cellHeight = height
-        printLog(log: "=== Card \(index) set new heights pair: actual=\(height.actual) max=\(height.max). Contraints will apply.")
-        let yInsets = cardSpacing + topInset + visibleNextCardHeight
+		// set cellHeight in the custom flowlayout, we use this for paging calculations.
+		//flowLayout.cellHeight = height
+		printLog(log: "=== Card \(index) set new heights pair: actual=\(height.actual) max=\(height.max). Contraints will apply.")
+		let yInsets = cardSpacing + topInset + visibleNextCardHeight
 		let fixedHieght: HeightsPair = HeightsPair( height.actual, max(height.actual, height.max))
-        let newHeight = max(fixedHieght.max, verticalCarouselView.frame.size.height - yInsets)
-        let newActualHeight = fixedHieght.actual > 0 ?  min(newHeight, fixedHieght.actual) : newHeight
+		let newHeight = max(fixedHieght.max, verticalCarouselView.frame.size.height - yInsets)
+		let newActualHeight = fixedHieght.actual > 0 ?  min(newHeight, fixedHieght.actual) : newHeight
 
-        let page = self.flowLayout.currentPage()
-        let yBefore = self.flowLayout.getOffsetForPage(page: page )
+		let page = self.flowLayout.currentPage()
+		let yBefore = self.flowLayout.getOffsetForPage(page: page )
 
-        // store heights
-        self.flowLayout.initDefaultHeights(index: index)
+		// store heights
+		self.flowLayout.initDefaultHeights(index: index)
 
-        let oldHeight = flowLayout.cellHeights[index].max
-        flowLayout.cellHeights[index] = HeightsPair(actual: newActualHeight, max: newHeight)
-        if abs(oldHeight - newHeight) > 1.0 {
-            printLog(log: "=== Card \(index) set height from \(oldHeight) to \(newHeight). Current page is \(page) lastProposedY \(flowLayout.lastProposedY)")
-        }
-        let yAfter = self.flowLayout.getOffsetForPage(page: page)
-        let delta = yAfter - yBefore
+		let oldHeight = flowLayout.cellHeights[index].max
+		flowLayout.cellHeights[index] = HeightsPair(actual: newActualHeight, max: newHeight)
 
-        if abs(delta) > 1.0 {
-            printLog(log: "=== Update cell height at \(index): Shift current pos \(delta) pixels down ")
-            self.flowLayout.invalidateLayout()  //needed?
-            let y = verticalCarouselView.contentOffset.y + delta
-            let point = CGPoint(x: verticalCarouselView.contentOffset.x, y: y)
-            verticalCarouselView.setContentOffset(point, animated: false)
-            flowLayout.lastProposedY += delta
-            printLog(log: "=== Position set to y=\(y) ")
-            if delta < 0 {
-                printLog(log: "=== Decreasing height at pos \(index) by \(-delta) pixels ")
-            }
-        //    self.flowLayout.invalidateLayout()  //needed?
-        }
+		var shouldInvalidate = false
+
+		if abs(oldHeight - newHeight) > 1.0 {
+			printLog(log: "=== Card \(index) set height from \(oldHeight) to \(newHeight). Current page is \(page) lastProposedY \(flowLayout.lastProposedY)")
+			shouldInvalidate = true
+		}
+		let yAfter = self.flowLayout.getOffsetForPage(page: page)
+		let delta = yAfter - yBefore
+
+		if abs(delta) > 1.0 {
+			printLog(log: "=== Update cell height at \(index): Shift current pos \(delta) pixels down ")
+			let y = verticalCarouselView.contentOffset.y + delta
+			let point = CGPoint(x: verticalCarouselView.contentOffset.x, y: y)
+			verticalCarouselView.setContentOffset(point, animated: false)
+			flowLayout.lastProposedY += delta
+			printLog(log: "=== Position set to y=\(y) ")
+			if delta < 0 {
+				printLog(log: "=== Decreasing height at pos \(index) by \(-delta) pixels ")
+			}
+			shouldInvalidate = true
+		}
+
+		if shouldInvalidate {
+			self.flowLayout.invalidateLayout()
+		}
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
