@@ -186,7 +186,7 @@ extension VerticalCarousel: UICollectionViewDelegate, UICollectionViewDataSource
 
         result.onHeightUpdated = { height in
             self.updateCellHeight(height: height, atIndex: indexPath.item)
-            self.flowLayout.invalidateLayout()
+            //self.flowLayout.invalidateLayout()
         }
 
         return result
@@ -289,7 +289,7 @@ extension VerticalCarousel: UICollectionViewDelegateFlowLayout {
 
         if abs(delta) > 1.0 {
             printLog(log: "=== Update cell height at \(index): Shift current pos \(delta) pixels down ")
-            //self.flowLayout.invalidateLayout()  //needed?
+            self.flowLayout.invalidateLayout()  //needed?
             let y = verticalCarouselView.contentOffset.y + delta
             let point = CGPoint(x: verticalCarouselView.contentOffset.x, y: y)
             verticalCarouselView.setContentOffset(point, animated: false)
