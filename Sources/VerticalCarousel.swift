@@ -148,6 +148,9 @@ public class VerticalCarousel: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         flowLayout.setFrameHeight(height: self.frame.height)
+		for (index,cellHeight) in self.flowLayout.cellHeights.enumerated() {
+			updateCellHeight(height: cellHeight, atIndex: index)
+		}
     }
 }
 
