@@ -93,6 +93,7 @@
 		6CF8AC5F209EFFBF00A0B26E /* VerticalCarouselFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalCarouselFlowLayout.swift; path = Sources/VerticalCarouselFlowLayout.swift; sourceTree = SOURCE_ROOT; };
 		6CF8AC60209EFFBF00A0B26E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Sources/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		6CF8AC62209EFFBF00A0B26E /* VerticalCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalCardCell.swift; path = Sources/VerticalCardCell.swift; sourceTree = SOURCE_ROOT; };
+		FA8BA11A2C0BEB3E003ABCAD /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +186,7 @@
 		6CE68C571F15729800CFFA14 = {
 			isa = PBXGroup;
 			children = (
+				FA8BA11A2C0BEB3E003ABCAD /* Package.swift */,
 				6C51A11D209E6F4100B83A82 /* VerticalCarousel.podspec */,
 				6C51A118209E6DC700B83A82 /* Example */,
 				6CE68C621F15729800CFFA14 /* Sources */,

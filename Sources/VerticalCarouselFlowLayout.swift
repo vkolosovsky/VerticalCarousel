@@ -52,6 +52,7 @@ internal class VerticalCarouselFlowLayout: UICollectionViewFlowLayout {
     internal override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
 
         if self.collectionView?.numberOfItems(inSection: 0) == 0 { return nil }
+        if self.collectionView?.numberOfItems(inSection: 0) ?? 0 <= indexPath.row { return nil }
 
         if let attr = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes {
             self.updateCellAttributes(attr)
